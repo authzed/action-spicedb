@@ -1,0 +1,12 @@
+---
+name: "SpiceDB Test Server"
+description: "Sets up a running instance of `spicedb serve-testing` for integration tests"
+author: "authzed"
+inputs:
+  version:
+    description: "version of SpiceDB to use"
+    required: false
+    default: "latest"
+runs:
+  using: "docker"
+  image: "Dockerfile"

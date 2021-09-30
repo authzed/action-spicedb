@@ -1,0 +1,28 @@
+---
+name: "test"
+
+on:
+  - "push"
+  - "pull_request"
+
+jobs:
+  test:
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v2"
+      - uses: "bewuethr/yamllint-action@v1.1.1"
+        with:
+          config-file: ".yamllint"
+      - uses: "./"
+      - uses: "engineerd/configurator@v0.0.6"
+        with:
+          name: "grpcurl"
+          fromGitHubReleases: "true"
+          pathInArchive: "grpcurl"
+          repo: "fullstorydev/grpcurl"
+          urlTemplate: "https://github.com/fullstorydev/grpcurl/releases/download/{{version}}/grpcurl_{{rawVersion}}_linux_x86_64.tar.gz"
+          version: "^v1.8"
+          token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: "ping server"
+        run: |
+          grpcurl -rpc-header "authorization: Bearer action-health" -plaintext -d '{"schema": "definition user {}"}' localhost:50051 "authzed.api.v1.SchemaService/WriteSchema"
