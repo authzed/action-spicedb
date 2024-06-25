@@ -9,12 +9,12 @@ jobs:
   test:
     runs-on: "ubuntu-latest"
     steps:
-      - uses: "actions/checkout@v2"
-      - uses: "bewuethr/yamllint-action@v1.1.1"
+      - uses: "actions/checkout@v4"
+      - uses: "bewuethr/yamllint-action@v1.3.0"
         with:
           config-file: ".yamllint"
       - uses: "./"
-      - uses: "engineerd/configurator@v0.0.6"
+      - uses: "engineerd/configurator@v0.0.10"
         with:
           name: "grpcurl"
           fromGitHubReleases: "true"
