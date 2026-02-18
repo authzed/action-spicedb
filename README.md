@@ -16,7 +16,7 @@ Add the following any workflow:
 
 ```yaml
 steps:
-- uses: "authzed/action-spicedb@v1"
+- uses: "authzed/action-spicedb"
   with:
     version: "latest"
 ```
