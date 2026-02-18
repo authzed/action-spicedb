@@ -1,6 +1,10 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-action.json
 ---
 name: "SpiceDB Test Server"
 description: "Sets up a running instance of `spicedb serve-testing` for integration tests"
+branding:
+  icon: "hard-drive"
+  color: "purple"
 author: "authzed"
 inputs:
   version:
